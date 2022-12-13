@@ -1,0 +1,8 @@
+Makefile
+bst.c
+word_counts_generic.c
+int_example.c
+shakespeare_top50.txt
+bst_data.txt
+weather.c
+weather_TMAX.txt

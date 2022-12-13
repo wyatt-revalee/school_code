@@ -1,0 +1,61 @@
+Copy the following files from ~jkinne/public_html/cs202-f2019/code/data_structures/binary_tree/
+into your HW42 directory
+
+Makefile
+bst.c
+word_counts_generic.c
+int_example.c
+
+Run the following in your HW42 directory as well, to have easy access to bst.h
+and test files
+ln -s /u1/h0/jkinne/public_html/cs202-f2019/code/data_structures/binary_tree/bst.h bst.h
+ln -s /u1/junk/shakespeare.txt shakespeare.txt
+ln -s /u1/h0/jkinne/public_html/cs202-f2019/code/data_structures/binary_tree/test_files test_files
+
+Run make to compile the programs as they are. Run them with some of the test files.
+
+Check bst.c and bst.h for things marked HW42 that you need to complete.  I suggest you do them in the following order.
+
+1) parent - update the insert function so that it sets the parent appropriately.  parent is needed when doing delete and tree rotations.
+
+2) max_height - update the insert function so that it sets the max_height appropriately.
+
+3) bst_print - update it so that it prints the information stated.  This can help with debugging.
+
+4) bst_insert - update it so it uses the allow_duplicate parameter appropriately. This is needed for the word_counts_generic.c to work appropriately.
+
+5) bst_map - complete the function as described in bst.h.  This is also needed for the word_counts_generic.c to work appropriately.
+
+6) bst_delete - complete it.
+
+7) AVL rotations - update bst_insert and bst_delete to perform AVL rotations.  For this, see
+   https://www.geeksforgeeks.org/avl-tree-set-1-insertion/
+   Note - you need to have this done for word_counts_generic.c to be efficient with shakespeare.txt
+
+Note - you can try your code with /u1/h0/jkinne/public_html/cs202-f2019/code/data_structures/binary_tree/bst_HW42.o
+       to see how Jeff's works.  Jeff's is probably mostly correct.  Let Jeff know if you find something wrong
+       with it.
+
+Once you have that all working, run the following to get the top 50 most common words in shakespeare -
+cat shakespeare.txt | /u1/h0/jkinne/public_html/cs202-f2019/code/utils/stripWords | ./word_counts_generic > shakespeare_top50.txt
+
+Try out turning on/off the FLAG_DO_NOT_REBALANCE to see how this impacts the height of the tree and runtime.
+Create a text file bst_data.txt and fill in the following.  For run-time, use the time command, and report the total user time.
+
+       	      AVL bst	bst not necessarily balanced
+------------------------------------------------
+shakespeare
+  -run-time
+-max_height
+
+In your bst_data.txt file, indicate whether this surprises you or not.  Also, do you see different behavior for
+building the tree that is sorted based on word (with no duplicates) versus the tree that is sorted based on count
+(and allows duplicates).
+
+
+8) Create a new .c file called weather.c
+   Create a struct datatype for keeping this data - http://cs.indstate.edu/cs151/code/data/Indianapolis-Weather-Station-USW00093819-1950-2018.csv
+   Create the compare, print, free functions to go with your datatype.  Use TMAX as the key, and build your tree with FLAG_ALLOW_DUPLICATES
+   Run your program to determine data for the top 50 hottest TMAX dates, save the file as weather_TMAX.txt
+
+Due date - Nov 8?  See what happens ...
