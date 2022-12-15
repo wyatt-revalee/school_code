@@ -1,0 +1,3 @@
+rig -c 1000 | grep -B 2 -E 'CA|NY' | grep -i -E '^[a-z].*[a-z]$' | awk '{ print $2 }' FS=" " | sort | uniq | wc -l
+
+rig -c 1000 | grep -B 2 -E 'CA|NY' | grep -E -i '^[a-z].*[a-z]'

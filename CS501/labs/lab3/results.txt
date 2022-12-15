@@ -1,0 +1,17 @@
+01. 5.25 % missing "FirstName" fields.
+02. 3.18 % missing "LastName" fields.
+03. 1.27 % missing "Zip" fields.
+04. 2.15 % missing "State" fields.
+05. 1.35 % swapped "State" and "Zip" fields.
+06. October had the most revenue with $ 433,066.94.
+07. October had the most gross profit with $ 213,642.37.
+08. October had the most net profit with $ 212,986.06.
+09. February had the least revenue with $ 392,178.27.
+10. February had the least gross profit with $ 193,381.52.
+11. February had the least net profit with $ 192,668.65.
+12. The "Fidget" had the most annual revenue with $ 1,247,144.58.
+13. The "Widget" sold the most units with 92,305.
+14. The "Fidget" had the most gross profit with $ 561,638.40.
+15. The "Bauble" had the least annual revenue with $ 169,781.90.
+16. The "Doodad" sold the least units with 89,330.
+17. The "Trinket" had the least gross profit with $ 120,162.84.
