@@ -1,0 +1,15 @@
+CS 458/558 Assignment 1 
+1. Write pseudocode for finding distance that prints the corresponding path between two given 
+vertices u, v of input digraph G. (No weights on the arcs) (10 points) 
+ 
+2. Write pseudocode for finding the longest path between two given vertices u, v of input digraph 
+G. (15 points) 
+ 
+3. Let G be a digraph. Design an algorithm that finds a shortest cycle in G. (10 points) 
+ 
+4. Let G be a digraph. Design an algorithm that finds a longest cycle in G. (15 points) 
+ 
+5. Let T be a tree with at least two vertices. Prove that T has at least two leaves. (10 points) 
+ 
+6. Write a program (you can use lecture notes) that reads n and k ≤ n and prints all permutations of 
+1, 2, ..., n in which exactly k elements are fixed (k elements are in thei
