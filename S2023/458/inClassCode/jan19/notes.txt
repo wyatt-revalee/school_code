@@ -1,0 +1,41 @@
+Interval Scheduling
+
+Problem statement:
+    We have a resource and many people request to use the resource for periods of time
+
+    Conditions:
+        - The resource can be used at most by one person at a time
+        - We can accept only compatible requests (overlap-free)
+
+    Goal: maximize the number of compatible requests received
+
+    Solution: Go through requests, picking next one based on earliest end time
+
+Greedy Algorithm for Interval Scheduling Problem
+    1. Initally let R be the set of all requests, and let A be empty;
+    2. While R is not empty:
+        i. Choose a request i of R that has the smallest finishing time
+        ii. Add request i to A;
+        iii. Delete all requests from R that are not compatible with request ii
+    3. End While
+    4. Return the set A as the set of accepted requests
+
+Graphing:
+    Intervals are vertices
+    Edges are overlaps
+    Any cycle longer than three cannot be an interval graph(?)
+
+Problem Statement:
+    We have a resource and many people request to use the resource for periods of time
+
+    Conditions:
+        - The resource can be used by at most one person at a time
+        - We can accept only compatible requests (overlap-free)
+        - The request, i, has a deadline, di; and it requres time interval of length ti
+        - Lateness of each requets i if f(i) - di (f(i) finish time of i)
+
+    Notation: We assign each request an interval [s(i), fi(i)] where ti = f(i) - s(i)
+
+    Goal: Mimimize the maximum lateness.
+
+    Solution: Earliest Deadline First
