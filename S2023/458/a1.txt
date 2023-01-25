@@ -1,15 +1,56 @@
 CS 458/558 Assignment 1 
 1. Write pseudocode for finding distance that prints the corresponding path between two given 
 vertices u, v of input digraph G. (No weights on the arcs) (10 points) 
+
+path = []
+distance = 0
+
+BFS(G, u)
+    Q = [] //queue
+    Q.add(u) // start by adding u into queue until neighbors are marked
+
+    u.visited = true
+
+    while (Q.length > 0) //while the queue is not empty
+        i = Q.pop() // remove u from queue and set i as a temp u to search its neighbors
+
+        for (all neighbors) j of i in G:
+            if(j.visited == false)
+                Q.add(j)    //add j to queue to later visit its neighbors (just as we did with u in the beginning)
+                j.visited = true
+
+
+Use bfs
+go backwards drom point v to find a path to u
  
 2. Write pseudocode for finding the longest path between two given vertices u, v of input digraph 
 G. (15 points) 
+
+use dfs?
+Watch old recording (jan 18)
  
 3. Let G be a digraph. Design an algorithm that finds a shortest cycle in G. (10 points) 
+
+Use bfs
+Find shortest cycle pointing back to u
+
+
  
 4. Let G be a digraph. Design an algorithm that finds a longest cycle in G. (15 points) 
+dfs?
+watch recording again (jan18)
+
  
 5. Let T be a tree with at least two vertices. Prove that T has at least two leaves. (10 points) 
  
 6. Write a program (you can use lecture notes) that reads n and k ≤ n and prints all permutations of 
-1, 2, ..., n in which exactly k elements are fixed (k elements are in thei
+1, 2, ..., n in which exactly k elements are fixed (k elements are in their positions). (10 points) 
+
+ex: n = 3, k = 1
+
+123 X (3 > k)
+132 O (1 in correct point)
+231 X (0 < k)
+213 O (3 in correct point)
+312 X (0 < k)
+321 O (2 in correct point)
