@@ -1,0 +1,9 @@
+Graph coloring
+    2 coloring using bfs
+    >=3 coloring: gets hard
+    k-coloring
+        special case
+        graph homomorphism
+            two graphs, g and h
+            map graph g to h
+        digraph homomorphism
