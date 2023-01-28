@@ -1,0 +1,127 @@
+CS 458/558 Assignment 1 
+1. Write pseudocode for finding distance that prints the corresponding path between two given 
+vertices u, v of input digraph G. (No weights on the arcs) (10 points) 
+
+stack = []
+visited = []
+
+DFS(u, v):
+    stack.append(u)
+    if(u == v):
+        print(stack)
+        return
+    visited.add(u)
+
+    if(u has any children):
+        for( all children in u):
+            if(child has been visited):
+                DFS(child, v)
+    stack.pop()
+
+
+ 
+2. Write pseudocode for finding the longest path between two given vertices u, v of input digraph 
+G. (15 points) 
+
+maxPath = []
+maxLength, length = 0, 0
+
+
+LongestPath(u, v, current, length)
+    if(current == v):
+        if(length > maxLength)
+            maxPath = path
+            maxLength = length
+        return;
+    
+    for every arc(current, w)
+        if w not in path:
+            add w to path
+            LongestPath(u, v, w, length+1)
+            remove w from path
+    
+ 
+3. Let G be a digraph. Design an algorithm that finds a shortest cycle in G. (10 points) 
+
+n = number of vertices
+vertices[all graph vertices] // fill list with all vertices of graph
+minCycle = vertices // default minCycle to highest (theoreticaly) possible
+
+for vertex in vertices:
+    BFS(G, vertex)
+
+        length = 1
+        u = vertex
+        Q = [] //queue
+        visited = []
+
+        Q.add(u) // start by adding u into queue until neighbors are marked
+
+        visited.add(u)
+
+        while (Q.length > 0) //while the queue is not empty
+            i = Q.pop() // remove u from queue and set i as a temp u to search its neighbors
+
+            for (all neighbors) j of i in G:
+                if(j not in visited)
+                    Q.add(j)    //add j to queue to later visit its neighbors (just as we did with u in the beginning)
+                    j.visited = true
+                    length += 1
+                else: //if we have visited the current node/vertex before, leave the loop (because we completed a cycle)
+                    if(visited.length < minCycle.length): // if the cycles length is less than our minumun, set it as new min
+                        minCycle = visited
+                    return;
+
+ 
+4. Let G be a digraph. Design an algorithm that finds a longest cycle in G. (15 points) 
+dfs?
+
+
+Similar answer to 2, but instead of v, make way back to u
+
+maxPath = []
+maxLength, length = 0, 0
+
+
+LongestPath(u,  current, length)
+    if(current == u):
+        if(length > maxLength)
+            maxPath = path
+            maxLength = length
+        return;
+    
+    for every arc(current, w)
+        if w not in path:
+            add w to path
+            LongestPath(u, w, length+1)
+            remove w from path
+    
+
+ 
+5. Let T be a tree with at least two vertices. Prove that T has at least two leaves. (10 points) 
+
+Tree with n vertices = tree with n-1 edges
+Let d(n) be the degree of n.
+
+Suppose you have a maximal path, P in T. Suppose u and v are the end vertices of P. The only possible neighbor of u would be the vertex adjacent to it in P
+(otherwise the path would contain a cycle). Thus, the degree of u is equal to one (d(u) = 1) making u a leaf. By the same argument, d(v) = 1.
+Thus, with any tree with vertices greater than 2, there must be at least two leaves.
+ 
+6. Write a program (you can use lecture notes) that reads n and k ≤ n and prints all permutations of 
+1, 2, ..., n in which exactly k elements are fixed (k elements are in their positions). (10 points) 
+
+ex: n = 3, k = 1
+
+123 X (3 > k)
+132 O (1 in correct point)
+231 X (0 < k)
+213 O (3 in correct point)
+312 X (0 < k)
+321 O (2 in correct point)
+
+Solution:
+n = input(), k = input()
+
+if(k > n)
+    return;
+

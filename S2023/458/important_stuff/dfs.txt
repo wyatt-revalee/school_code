@@ -1,0 +1,13 @@
+DFS Psuedocode
+
+ DFS(G, u) (u is the vertex where the search starts)
+    Stack = []
+    for each vertex i, visited[i] = false
+    Stack.push(u)
+    while(Stack is not empty) do:
+        i = Stack.pop()
+        if( visited[i] == false) then:
+            visited[i] = true
+            for each unvisited neighbor j of i:
+                Stack.push(j)
+                

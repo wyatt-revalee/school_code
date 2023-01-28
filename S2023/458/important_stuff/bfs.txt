@@ -1,0 +1,18 @@
+BFS Psuedocode
+
+BFS(G, u)
+
+Q = [] //queue
+visited = []
+
+Q.add(u) // start by adding u into queue until neighbors are marked
+
+visited.add(u)
+
+while (Q.length > 0) //while the queue is not empty
+    i = Q.pop() // remove u from queue and set i as a temp u to search its neighbors
+
+    for (all neighbors) j of i in G:
+        if(j not in visited)
+            Q.add(j)    //add j to queue to later visit its neighbors (just as we did with u in the beginning)
+            j.visited = true
