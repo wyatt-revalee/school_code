@@ -23,7 +23,7 @@ DFS(u, v):
 2. Write pseudocode for finding the longest path between two given vertices u, v of input digraph 
 G. (15 points) 
 
-maxPath = []
+maxPath = [], path = []
 maxLength, length = 0, 0
 
 

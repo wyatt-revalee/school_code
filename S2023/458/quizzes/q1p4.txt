@@ -1,0 +1,15 @@
+Prove that log(n!) ε Θ(n * log(n))
+
+We know that log(n!) = log(1) + log(2) + ... + log(n-1) + log(n)
+
+We can get the upper bound by doing the following:
+
+log(1) + log(2) + ... + log(n) <= log(n) + log)n) + ... + log(n) = n*log(n)
+
+Similarly, we can get the lower bound by the following:
+
+log(1) + log(n/2) + ... + log(n) >= log(n/2) + ... + log(n) >= log(n/2) + ... + log(n/2) = n/2 * log(n/2)
+
+Thus we know that the range of log(n!) is from n/2 * log(n/2) -> n*log(n)
+
+Therefore: log(n!) ε Θ(n * log(n))

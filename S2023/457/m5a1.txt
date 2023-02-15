@@ -1,0 +1,14 @@
+Q: Consider the relation scheme R(C,S,Z) with the following set of functional dependencies: { CS --> Z, Z --> C}.
+
+(a) Is R in Boyce-Codd Normal Form (BCNF) ?
+
+(b) Is R in Third Normal Form (3NF) ?
+
+Justify your answers. Write a report containing your answers. Upload your report.
+
+BCNF Form (simplified): [Key -> Key or Non-Key]
+
+Primary Keys: CS, CZ
+
+CS -> Z, Key -> Non-Key = BCNF
+Z -> Non-Key -> Key =\= BCNF 
