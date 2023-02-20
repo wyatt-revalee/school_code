@@ -6,9 +6,23 @@ Q: Consider the relation scheme R(C,S,Z) with the following set of functional de
 
 Justify your answers. Write a report containing your answers. Upload your report.
 
-BCNF Form (simplified): [Key -> Key or Non-Key]
+BCNF (simplified): [Key -> Key or Non-Key]
+BCNF Formal: With the exception of trivial functional dependencies, every functional
+dependency in a table must be a dependency on a candidate Key
+(or on a superset of a candidate key)
 
-Primary Keys: CS, CZ
+Primary Keys: CS
 
 CS -> Z, Key -> Non-Key = BCNF
-Z -> Non-Key -> Key =\= BCNF 
+Z -> C, Non-Key -> Key =\= BCNF 
+S -> CS Key -> Key
+C -> CSZ Key -> Key
+
+(a) R is not in BCNF. This is because of the functional dependency of Z -> C,
+with C not being a candidate key (at least by itself)
+
+(b) R is in Third Normal Form, because every non-prime key is dependent on a candidate key.
+
+S -> CS
+C -> CSV
+z -> CS
