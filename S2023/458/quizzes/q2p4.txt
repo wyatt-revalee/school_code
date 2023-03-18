@@ -1,0 +1,47 @@
+Finding a negative weight cycle in a digraph
+
+The Bellman-Ford algorithm is used to find negative weight cycles in digraphs. It takes at most V-1 iterations.
+
+1. Pick a starting vertex, initialize distance to itself at 0, and to all other nodes as infinity.
+	In this case, a will be our starting node:
+	
+	  a   b   c   d   e   f   g
+	a[0, if, if, if, if, if, if] (if = infinity)
+
+2. Next we will go through the first iteration of our algorithm. We will be looking at each node aside from a
+and finding their distance to a. We will do this going from left to right (b, c, d, ..., g) If the distance is smaller than our current,
+we will update it.
+Once we compute a node, we then look at its neighbors to compute the distance from them to a.
+
+For example:
+	
+	  a   b   c   d   e   f   g
+	a[0, 3, if, if, if, if, 1]
+
+Although c is not a neighbor of a, it is of b. We find the distance D(b,c) = 2 and then add it to D(a,b) = 3, resulting in 
+D(a,c) = 5. Repeat this for every node.
+
+	  	   a  b  c  d  e  f  g
+first iteration: a[0, 3, 5, 9, 3, 7, 1]
+
+3. We continue iterating, usually decreasing distances to nodes with each iteration:
+
+		    a  b  c  d  e  f  g
+second iteration: a[0, 3, 5, 9, -7, 7, 1]
+
+		   a  b  c  d  e  f  g
+third iteration: a[0, 3, 5, 9, -7, -3, 1]
+
+		    a  b  c  d  e  f  g
+fourth iteration: a[0, 3, -1, 9, -7, -3, 1]
+
+		   a  b  c  d  e  f  g
+fifth iteration: a[0, 3, -1, 3, -7, -3, 1]
+
+		  a  b  c  d  e  f  g
+sixth iteration: a[0, 3, -1, 3, -7, -3, 1]
+
+4. Eventually, our algorithm will complete once we hit V-1 iterations. By this point, we will have found the shortest
+path to each vertex from our starting point, a. However, if at any point an iteration ends up with the same distances
+as the previous iteration, we can stop our algorithm, as that is our indication that we have found the most efficient path.
+V-1 is only the worst case.
