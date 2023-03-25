@@ -1,0 +1,160 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Starbucks Finder</title>
+    <link rel="stylesheet" type="text/css" href="navigator.css">
+  </head>
+
+
+
+  <body>
+    <img id="mainLogo" src="./starbucksLogo.png"><br />
+    <h1 id="body_header">Starbucks Finder</h1>
+    <button class="locationButton" id="paris" onclick="get_country('paris')">Starbucks Paris</button>
+    <button class="locationButton" id="sweden" onclick="get_country('sweden')">Starbucks Sweden</button>
+    <button class="locationButton" id="korea" onclick="get_country('korea')">Starbucks Korea</button>
+    <form id="loc_form">
+        <input type="number" class="input" id="lat" placeholder="Latitude" max="90" min="-90" step="any">
+        <input type="number" class="input" id="lon" placeholder="Longitude" max="180" min="-180" step="any">
+        <input type="number" class="input" id="max_miles" placeholder="maximum distance (miles)">
+        <br/><button id="finder">Find It</button>
+    </form>
+    <div id="results">
+        <ul id="data-list">
+            <li class="data-listItem">Terre Haute, IN 47802</li>
+            <li class="data-listItem">Spencer, IN 47460</li>
+        </ul>
+    </div>
+    <script>
+        let apiUrl = 'http://139.102.14.201:49913/';
+        let lat = document.getElementById("lat")
+        let lon = document.getElementById("lon")
+        let form = document.getElementById('loc_form');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            if (!form.checkValidity()){
+                alert("Please enter a valid latitude and longitude.")
+                return
+            }
+            get_query();
+        });
+
+        function get_query(){
+            loc = {coords: {latitude: lat.value, longitude: lon.value}}
+
+            if(navigator.geolocation && (loc.coords.latitude == "" || loc.coords.longitude == "")) {
+                navigator.geolocation.getCurrentPosition(make_query, (err) => {
+                    if (err.code == 1) {
+                        alert("Location services denied. Please enter a valid latitude and longitude.")
+                        return
+                    }
+                    else if (err.code == 2) {
+                        alert("Location unavailable. Please enter a valid latitude and longitude.")
+                        return
+                    }
+                    else if (err.code == 3) {
+                        alert("Location services timed out. Please enter a valid latitude and longitude.")
+                        return
+                    }
+                    else {
+                        alert("Location services error. Please enter a valid latitude and longitude.")
+                        return
+                    }
+                });
+            }
+            else
+                make_query(loc)
+        }
+
+        function make_query(loc){
+            pos = ""
+            console.log("loc: " + loc)
+            if (loc.coords.latitude == "" || loc.coords.longitude == ""){ // position unavailable
+                alert("Location services denied. Please enter a valid latitude and longitude.")
+                return
+            }
+            else { // position object available
+                pos = "lat="+loc.coords.latitude+"&lon="+loc.coords.longitude
+            }
+
+            max_miles = document.getElementById("max_miles").value
+            if (max_miles != "") {
+                max_miles = "&max_miles=" + max_miles
+            }
+
+            // console.log("coords: " + [lat, lon] + "\npos: " + pos)
+            query = apiUrl + "finder?" + pos + max_miles
+            console.log(query)
+            find(query)
+        }
+
+        function find(q){
+            fetch(q)
+            .then(response => response.text()) // Access the response text
+            .then(text => {
+                // console.log("text: " + text)
+                const data = JSON.parse(text); // Parse the JSON text into an object
+                console.log(data)
+                show_results(data)
+            })
+            .catch(error => console.error(error));
+        }
+
+        function get_country(c){
+            lat_input = document.getElementById("lat")
+            lon_input = document.getElementById("lon")
+
+            //Made this to be cleaner. Should work, but unable to test rn. - Wyatt
+            let locations = {
+                "paris" : [48.8583701, 2.2944813],
+                "sweden" : [59.3293149, 18.0687085],
+                "korea" : [38, 127]
+            }
+
+            let lat;
+            let lon;
+
+            lat = locations[c][0]
+            lon = locations[c][1]
+            // if (c == "paris"){
+            //     lat = 48.8583701
+            //     lon = 2.2944813
+            // }
+            // else if (c == "sweden"){
+            //     lat = 59.3293149
+            //     lon = 18.0687085
+            // }
+            // else if (c == "korea"){
+            //     lat = 38
+            //     lon = 127
+            // }
+            lat_input.value = lat
+            lon_input.value = lon
+        }
+        function show_results(results){
+            const list = document.getElementById('data-list');
+            list.innerHTML = '';
+            // Populate the list with the data
+            results.forEach(store => {
+            if (store["not_found"] != undefined){
+                alert(store["not_found"])
+                return
+            }
+            store = [store["Address"],
+                    store["City"],
+                    store["State/Province"],
+                    store["Country"],
+                    store["dist"].toFixed(2) + " miles"]
+
+            const li = document.createElement('li');
+            li.textContent = store.join(', ');
+            list.appendChild(li);
+            });
+        }
+    </script>
+  </body>
+</html>

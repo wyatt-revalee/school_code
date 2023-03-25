@@ -1,0 +1,65 @@
+#body_header {
+    font-family: sans-serif;
+}
+
+.input {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    border: 2px solid rgb(0, 112, 74);
+    border-radius: 10px;
+}
+
+.input:focus{
+    border: 2px solid rgb(0, 112, 74);
+}
+
+#mainLogo{
+    margin-top: 30px;
+    width:  150px;
+    height: 150px;
+    justify-content: center;
+}
+
+body {
+    margin: auto;
+    text-align: center;
+}
+
+.locationButton {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(0, 112, 74);;
+    color: white;
+    margin-right: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    justify-content: space-between;
+
+ }
+
+ #loc_form {
+    margin-top: 20px;
+ }
+
+ #finder {
+    margin-top: 10px;
+    font-size: 20px;
+    background-color: rgb(0, 112, 74);
+    color: white;
+ }
+
+#data-list {
+    list-style-position: inside;
+    list-style-image: url("https://cs.indstate.edu/~cs49905/app/starbucksLogoSmall.png");
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.data-listItem {
+    margin-bottom: 15px;
+}
