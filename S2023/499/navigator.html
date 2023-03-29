@@ -10,23 +10,37 @@
 
 
   <body>
-    <img id="mainLogo" src="./starbucksLogo.png"><br />
-    <h1 id="body_header">Starbucks Finder</h1>
-    <button class="locationButton" id="paris" onclick="get_country('paris')">Starbucks Paris</button>
-    <button class="locationButton" id="sweden" onclick="get_country('sweden')">Starbucks Sweden</button>
-    <button class="locationButton" id="korea" onclick="get_country('korea')">Starbucks Korea</button>
-    <form id="loc_form">
-        <input type="number" class="input" id="lat" placeholder="Latitude" max="90" min="-90" step="any">
-        <input type="number" class="input" id="lon" placeholder="Longitude" max="180" min="-180" step="any">
-        <input type="number" class="input" id="max_miles" placeholder="maximum distance (miles)">
-        <br/><button id="finder">Find It</button>
-    </form>
-    <div id="results">
-        <ul id="data-list">
-            <li class="data-listItem">Terre Haute, IN 47802</li>
-            <li class="data-listItem">Spencer, IN 47460</li>
-        </ul>
+      <div class="bodyInner">
+        <img id="mainLogo" src="./starbucksLogo.png"><br />
+        <h1 id="bodyHeader">Starbucks Finder</h1>
+        <button class="locationButton" id="paris" onclick="get_country('paris')">Starbucks Paris</button>
+        <button class="locationButton" id="sweden" onclick="get_country('sweden')">Starbucks Sweden</button>
+        <button class="locationButton" id="korea" onclick="get_country('korea')">Starbucks Korea</button>
+        <form id="loc_form">
+            <input type="number" class="input" id="lat" placeholder="Latitude" max="90" min="-90" step="any">
+            <input type="number" class="input" id="lon" placeholder="Longitude" max="180" min="-180" step="any">
+            <input type="number" class="input" id="max_miles" placeholder="Maximum Distance (Miles)">
+            <br /><button id="finder">Find It</button>
+        </form>
+        <div id="results">
+            <div id="resultText"></div>
+            <ul id="data-list">
+                <li class="data-listItem">83 rue Saint Charles, Paris, J, FR, 0.61 miles</li>
+                <li class="data-listItem">66 avenue de la Motte Piquet, Paris, J, FR, 0.63 miles</li>
+                <li class="data-listItem">53, rue de Passy, Centre commercial Passy Plaza, Paris, J, FR, 0.67 miles</li>
+                <li class="data-listItem">83 rue Saint Charles, Paris, J, FR, 0.61 miles</li>
+                <li class="data-listItem">66 avenue de la Motte Piquet, Paris, J, FR, 0.63 miles</li>
+                <li class="data-listItem">53, rue de Passy, Centre commercial Passy Plaza, Paris, J, FR, 0.67 miles</li>
+                <li class="data-listItem">83 rue Saint Charles, Paris, J, FR, 0.61 miles</li>
+                <li class="data-listItem">66 avenue de la Motte Piquet, Paris, J, FR, 0.63 miles</li>
+                <li class="data-listItem">53, rue de Passy, Centre commercial Passy Plaza, Paris, J, FR, 0.67 miles</li>
+                <li class="data-listItem">83 rue Saint Charles, Paris, J, FR, 0.61 miles</li>
+                <li class="data-listItem">66 avenue de la Motte Piquet, Paris, J, FR, 0.63 miles</li>
+                <li class="data-listItem">53, rue de Passy, Centre commercial Passy Plaza, Paris, J, FR, 0.67 miles</li>
+            </ul>
+        </div>
     </div>
+    
     <script>
         let apiUrl = 'http://139.102.14.201:49913/';
         let lat = document.getElementById("lat")
@@ -108,30 +122,14 @@
             lat_input = document.getElementById("lat")
             lon_input = document.getElementById("lon")
 
-            //Made this to be cleaner. Should work, but unable to test rn. - Wyatt
             let locations = {
                 "paris" : [48.8583701, 2.2944813],
                 "sweden" : [59.3293149, 18.0687085],
                 "korea" : [38, 127]
             }
 
-            let lat;
-            let lon;
-
-            lat = locations[c][0]
-            lon = locations[c][1]
-            // if (c == "paris"){
-            //     lat = 48.8583701
-            //     lon = 2.2944813
-            // }
-            // else if (c == "sweden"){
-            //     lat = 59.3293149
-            //     lon = 18.0687085
-            // }
-            // else if (c == "korea"){
-            //     lat = 38
-            //     lon = 127
-            // }
+           let lat = locations[c][0]
+           let lon = locations[c][1]
             lat_input.value = lat
             lon_input.value = lon
         }
@@ -154,6 +152,21 @@
             li.textContent = store.join(', ');
             list.appendChild(li);
             });
+            let resultsDiv = document.getElementById('resultText')
+            let storeCount = list.childElementCount
+            let storeResultSum = document.createElement('div')
+            if(storeCount > 1)
+                storeResultSum.innerHTML = `There are ${storeCount} stores near you!`
+            else if(storeCount == 1)
+                storeResultSum.innerHTML = `There is one store near you!`
+            else
+                storeResultSum.innerHTML = "No stores in that range."
+
+            if(resultsDiv.childElementCount) {
+                resultsDiv.removeChild(resultsDiv.firstChild)
+            }
+            resultsDiv.appendChild(storeResultSum)
+
         }
     </script>
   </body>
