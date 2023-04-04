@@ -1,0 +1,22 @@
+Let A1=Ad0*d1,  A2=Ad1*d2,  A3=Ad2*d3,  A4=Ad3*d4,  A5=Ad4*d5, be matrices of integers with d0=5, d1=10, d2=15, d3=50, d4=20, d5=100.
+What is the minimum number of multiplication to multiply A1*A2*A3*A4*A5? Show the steps!
+
+A1 = 5  * 10
+A2 = 10 * 15
+A3 = 15 * 50
+A4 = 50 * 20
+A5 = 20 * 100
+
+Solution:
+
+    A1 * A2 = 5 * 10 * 15 = 750
+    +
+    A1 * A3 = 5 * 15 * 50 = 3750
+    +
+    A1 * A4 = 5 * 50 * 20 = 5000
+    +
+    A1 * A5 = 5 * 20 * 100 = 10000
+    ______________________________
+    = 19,500
+
+    The minimum number of multiplications to multiply A1*A2*A3*A4*A5 is 19,500.
